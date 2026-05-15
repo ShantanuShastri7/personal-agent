@@ -2,3 +2,6 @@ anthropic
 mcp[cli]
 python-dotenv
 python-telegram-bot
+google-cloud-firestore
+fastapi
+uvicorn
