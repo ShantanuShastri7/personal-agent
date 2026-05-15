@@ -1,0 +1,7 @@
+mcp[cli]
+python-dotenv
+uvicorn
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+google-cloud-secret-manager

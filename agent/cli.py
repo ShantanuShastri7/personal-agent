@@ -19,8 +19,7 @@ from agent import MCPAgent
 
 MCP_SERVERS = [
     "https://strava-mcp-86893833347.us-central1.run.app/mcp",
-    # Add more MCP server URLs here as you build them:
-    # "https://google-mcp-86893833347.us-central1.run.app/mcp",
+    "http://localhost:8002/mcp",
 ]
 
 
