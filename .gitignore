@@ -1,6 +1,6 @@
 # Secrets — never commit these
 .env
-google-calendar-map/credentials.json
+google-calendar-mcp/credentials.json
 
 # Python
 __pycache__/
