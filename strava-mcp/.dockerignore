@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+setup_auth.py
+upload_secrets.py

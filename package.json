@@ -1,0 +1,11 @@
+{
+  "name": "mymcp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "inspect": "mcp-inspector"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "latest"
+  }
+}

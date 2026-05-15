@@ -1,0 +1,5 @@
+mcp[cli]
+httpx
+python-dotenv
+uvicorn
+google-cloud-secret-manager
