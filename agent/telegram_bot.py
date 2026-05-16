@@ -101,16 +101,22 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
     await context.bot.send_chat_action(chat_id, "typing")
 
+    response = None
+    agent = MCPAgent(MCP_SERVERS)
     try:
-        # New MCP connection per message — avoids event loop / anyio conflicts
-        async with MCPAgent(MCP_SERVERS) as agent:
-            agent._messages = await load_messages(chat_id)
-            response = await agent.chat(user_text)
-            await save_messages(chat_id, agent._messages)
-
+        await agent.__aenter__()
+        agent._messages = await load_messages(chat_id)
+        response = await agent.chat(user_text)
+        await save_messages(chat_id, agent._messages)
     except Exception as e:
-        print(f"[error] {e}")
-        response = f"Sorry, something went wrong: {e}"
+        print(f"[chat error] {e}")
+        if response is None:
+            response = f"Sorry, something went wrong: {e}"
+    finally:
+        try:
+            await agent.__aexit__(None, None, None)
+        except Exception as e:
+            print(f"[cleanup error, ignored] {e}")
 
     for chunk in split_message(response):
         await update.message.reply_text(chunk)
@@ -140,7 +146,6 @@ async def lifespan(app: FastAPI):
     await ptb_app.bot.set_webhook(f"{WEBHOOK_URL}/telegram")
     print(f"Webhook set to {WEBHOOK_URL}/telegram")
     yield
-    await ptb_app.bot.delete_webhook()
     await ptb_app.stop()
     await ptb_app.shutdown()
 
