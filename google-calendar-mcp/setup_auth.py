@@ -14,7 +14,10 @@ import json
 from google_auth_oauthlib.flow import InstalledAppFlow
 from dotenv import set_key
 
-SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"]
+SCOPES = [
+    "https://www.googleapis.com/auth/calendar.readonly",
+    "https://www.googleapis.com/auth/calendar.events",
+]
 CREDENTIALS_FILE = "credentials.json"
 ENV_PATH = "../.env"
 
